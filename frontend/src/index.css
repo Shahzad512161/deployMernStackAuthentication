@@ -1,0 +1,71 @@
+*,
+::after,
+::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+label{
+  font-size: 20px;
+}
+
+html,
+body{
+  height: 100%;
+  width: 100%;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container{
+  background-color: #fff;
+  padding: 32px 48px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 8px 8px 24px 0px rgb(66, 68, 90);
+}
+
+.container > h1{
+  margin-bottom: 20px;
+}
+
+.container >form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.container div{
+  display: flex;
+  flex-direction: column;
+}
+
+.container input{
+ width: 100%;
+ font-size: 20px;
+ padding: 10px;
+ border: none;
+ outline: none;
+ border-bottom: 2px solid black;
+}
+
+.container input::placeholder{
+  font-size: 12px;
+  font-style: italic;
+}
+
+button{
+  background-color: purple;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
