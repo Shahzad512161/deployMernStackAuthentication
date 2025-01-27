@@ -38,7 +38,15 @@ const Signup = () => {
         body: JSON.stringify({ username, email, password }),
       });
 
-      const result = await response.json();
+      if (!response.ok) {
+        // If response status is not OK, handle the error
+        const errorText = await response.text();
+        throw new Error(
+          errorText || `HTTP error! status: ${response.status}`
+        );
+      }
+
+      const result = await response.json(); // Safely parse JSON after status check
       const { success, error } = result;
 
       if (success) {
@@ -47,7 +55,7 @@ const Signup = () => {
           navigate("/");
         }, 1000);
       } else if (error) {
-        return toast.error(error.message || "Signup failed");
+        toast.error(error.message || "Signup failed");
       }
     } catch (err) {
       console.error("Error during signup:", err);
