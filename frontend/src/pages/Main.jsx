@@ -22,7 +22,7 @@ const Main = () => {
 
     const fetchProducts = async () => {
         try {
-            const url = url('https://deploy-mern-stack-authentication-irdgv2qlj.vercel.app/product')
+            const url = url('https://deploy-mern-stack-authentication-api.vercel.app/product')
             const headers = {
                 header:{
                     'Authorization':localStorage.getItem('token')
