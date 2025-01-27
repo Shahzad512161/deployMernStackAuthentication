@@ -7,8 +7,18 @@ const ProductRoutes = require('./Routers/ProductRoutes');
 const ensureAuthenticated = require("./Middlewares/Auth")
 require("./config/db"); // Assuming this file connects to your MongoDB database
 const bodyParser = require('body-parser');
+
+
+
 const cors = require('cors');
-app.use(cors());
+const allowedOrigins = ['https://deploy-mern-stack-authentication-ui.vercel.app/'];
+app.use(cors({
+  origin: allowedOrigins, // Allow requests only from your frontend
+  credentials: true,      // Allow cookies and headers like Authorization
+}));
+
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
