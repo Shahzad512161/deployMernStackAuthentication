@@ -31,7 +31,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch('https://deploy-mern-stack-authentication-irdgv2qlj.vercel.app/auth/signup', {
+      const response = await fetch('https://deploy-mern-stack-authentication-api.vercel.app/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
