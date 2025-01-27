@@ -13,7 +13,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const allowedOrigins = ['https://deploy-mern-stack-authentication-ui.vercel.app/'];
 app.use(cors({
-  origin: allowedOrigins, // Allow requests only from your frontend
+  origin: '*', // Allow requests only from your frontend
   credentials: true,      // Allow cookies and headers like Authorization
 }));
 
