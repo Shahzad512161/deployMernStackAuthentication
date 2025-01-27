@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Ensure you import `useNavigate`
-import { ToastContainer, toast } from 'react-toastify'; // Ensure `toast` is imported
-import 'react-toastify/dist/ReactToastify.css'; // Import the styles for Toastify
-import { handleError } from '../utils';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
   const [signupInfo, setSignupInfo] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
 
-  const navigate = useNavigate(); // Ensure `navigate` is defined
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,39 +26,32 @@ const Signup = () => {
     const { username, email, password } = signupInfo;
 
     if (!username || !email || !password) {
-      return toast.error('All fields are required');
+      return toast.error("All fields are required");
     }
 
     try {
-      const response = await fetch('https://deploy-mern-stack-authentication-api.vercel.app/auth/signup', {
-        method: 'POST',
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/signup`, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, email, password }),
       });
 
       const result = await response.json();
-      const {success, error} = result;
-      console.log('Server response:', result);
+      const { success, error } = result;
 
       if (success) {
-        toast.success('Signup successful'); // `toast` is properly defined here
+        toast.success("Signup successful");
         setTimeout(() => {
-          navigate('/'); // `navigate` is properly defined here
+          navigate("/");
         }, 1000);
-      } else if (error ){
-        const details = error?.details[0].message;
-        return handleError(details)
-        // return toast.error(result.message || 'Signup failed');
-       
+      } else if (error) {
+        return toast.error(error.message || "Signup failed");
       }
-
-
-
     } catch (err) {
-      console.error('Error during signup:', err);
-      toast.error(err.message || 'An error occurred while signing up');
+      console.error("Error during signup:", err);
+      toast.error(err.message || "An error occurred while signing up");
     }
   };
 
